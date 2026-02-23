@@ -17,6 +17,18 @@ namespace ButorokJSON
 
         public int ar { get; set; }
 
-        public bool keszletek { get; set; }
+        public bool keszleten { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nev} {anyag} " +
+                $"({meretek.Magassag}x{meretek.Szelesseg}x{meretek.melyseg}) Ft" +
+                $"Ára: {ar}Ft" +
+            $"{(keszleten ? "Készleten van!" : "Nem elérhető")}";
+        }
+        public int terfogat()
+        {
+            return meretek.Magassag * meretek.Szelesseg * meretek.melyseg;
+        }
     }
 }

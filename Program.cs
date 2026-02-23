@@ -10,6 +10,23 @@ namespace ButorokJSON
             {
                 string file = File.ReadAllText("butorok.json");
                 Gyoker gy =JsonSerializer.Deserialize<Gyoker>(file);
+                //Mely bútorok vannak fából?
+                foreach (var  t in gy .targyak)
+                {
+                    if (t.anyag.ToLower().Contains("fa"))
+                    
+                        Console.WriteLine(t);
+                    
+                }
+                //Melyik bútornak van a legnagyobb térfogata?
+                    Targyak max = gy.targyak[0];
+                foreach (var targy in gy.targyak)
+                    {
+                    if (targy.terfogat() > max.terfogat())
+                        max = targy;
+                }
+                Console.WriteLine("Legnagyobb: " + max);
+                //A készleten lévők összára mennyi ?
             }
             catch (JsonException ex)
             {

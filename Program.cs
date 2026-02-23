@@ -1,10 +1,33 @@
-﻿namespace ButorokJSON
+﻿using System.Text.Json;
+
+namespace ButorokJSON
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            try
+            {
+                string file = File.ReadAllText("butorok.json");
+                Gyoker gy =JsonSerializer.Deserialize<Gyoker>(file);
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine("JSON fálj feldolgozási hiba: " + ex.Message);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine("Elérésiút hiba: " + ex.Message);
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("Fáljkezelési hiba: " + ex.Message);
+            }
+            catch (Exception ex) { 
+             Console.WriteLine("Fáljkezelési hiba: " + ex.Message);
+            }
+
+           
         }
     }
 }
